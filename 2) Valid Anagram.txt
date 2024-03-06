@@ -1,0 +1,74 @@
+2.Valid Anagram
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+ 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length, t.length <= 5 * 104
+s and t consist of lowercase English letters.
+ 
+Solution:
+1)Sorting
+sort the strings by converting them into character arrays
+then check if s array equals t array and return the value
+
+time:O(nlogn)
+space:O(n)+O(n) two arrays for two strings
+
+code:
+import java.util.Arrays;
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] sChars = s.toCharArray();
+        char[] tChars = t.toCharArray();
+        
+        Arrays.sort(sChars);
+        Arrays.sort(tChars);
+        
+        return Arrays.equals(sChars, tChars);
+    }
+}
+
+
+2)hash table using array:
+
+creating an integer array of 26 elements, traverse through string s increment the characters value at its index and at same time decrement the string t character 
+after that traverse through the array and check if any element is non zero return False
+else after traversing return True
+
+time:O(n)
+space:O(1)
+
+class Solution {
+
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) return false;
+
+        int[] store = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            store[s.charAt(i) - 'a']++;
+            store[t.charAt(i) - 'a']--;
+        }
+
+        for (int n : store) if (n != 0) return false;
+
+        return true;
+    }
+}
+
