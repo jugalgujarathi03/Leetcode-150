@@ -70,7 +70,7 @@ class Solution {
 
 3)HASHSET:
 traverse through the arary maintainig a hashset if an element occurs inside a hashset return True and if current element is not in the hashset return false and move forward
-if loop is completed then return false
+if loop is completed then return false.
 
 time:O(n)
 space:O(n)
